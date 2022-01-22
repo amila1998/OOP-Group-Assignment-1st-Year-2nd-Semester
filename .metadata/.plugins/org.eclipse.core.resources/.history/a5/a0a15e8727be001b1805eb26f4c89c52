@@ -1,0 +1,162 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+     <%@page import="java.util.ArrayList"%>
+    
+      
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="styles/Default.css">
+<link rel="stylesheet" type="text/css" href="styles/UserProfile.css">
+<title>user account</title>
+</head>
+<body>
+	<div class="UPbody">
+		<section style="width:70%">
+			<div id="formStyle4">
+			<form action="#" method="post" >
+			<% request.getSession(false);
+						
+			if(session!=null){ %>
+					<c:forEach var="userVar" items="${userDetails}">
+			
+						<c:set var="id" value="${userVar.id}"/>
+						<c:set var="name" value="${userVar.name}"/>
+						<c:set var="email" value="${userVar.email}"/>
+						<c:set var="phone" value="${userVar.phone}"/>
+						<c:set var="NIC_PassportNO" value="${userVar.NIC_PassportNO}"/>
+						<c:set var="sex" value="${userVar.sex}"/>
+						<c:set var="password" value="${userVar.password}"/>
+	
+				<center>
+					<div id="profilepic">
+						<img src="images/avatardefault_92824.png" alt="User Profile Logo">
+					</div>
+				</center>
+			<fieldset>
+		         <legend>Profile Details</legend><br>
+		                    <div class="row">
+								<div style="width:20%"> 
+									<label for="uid" class="m">User ID</label>
+								</div>
+								<div style="width:2%">
+									<label>:</label>
+								</div>
+								<div style="width:78%">
+									<label for="uid" id="Uid">${userVar.id}</label>
+								</div>
+							</div>
+
+							<div class="row">
+								<div style="width:20%"> 
+									<label for="name" class="m">Name</label>
+								</div>
+								<div style="width:2%">
+									<label>:</label>
+								</div>
+								<div style="width:78%">
+									<label for="name" id="name">${userVar.name}</label>
+								</div>
+							</div>
+
+
+							<div class="row">
+								<div style="width:20%">
+									<label for="email" class="m">Email</label>
+								</div>
+								<div style="width:2%">
+									<label>:</label>
+								</div>
+								<div style="width:78%">
+									<label for="email" id="email">${userVar.email}</label>
+								</div>
+							</div>
+
+							<div class="row">
+								<div style="width:20%">
+				        			<label for="Phone" class="m">Mobile Number</label>
+				        		</div>
+				        		<div style="width:2%">
+									<label>:</label>
+								</div>
+				        		<div style="width:78%">
+				        			<label for="Phone" id="Phone">${userVar.phone}</label>
+				        		</div>
+							</div>
+
+							<div class="row">
+								<div style="width:20%">
+				        			<label for="NIC_PassportNO" class="m">NIC/Passport NO</label>
+				        		</div>
+				        		<div style="width:2%">
+									<label>:</label>
+								</div>
+				        		<div style="width:78%">
+				        			<label for="NIC_PassportNO" id="NIC_PassportNO">${userVar.NIC_PassportNO}</label>
+				        		</div>
+							</div>
+
+							<div class="row">
+								<div style="width:20%">
+					    			<label for="Sex" class="m">Sex</label>
+					    		</div>
+					    		<div style="width:2%">
+									<label>:</label>
+								</div>
+					    		<div style="width:78%">
+					    			<label for="Sex" id="Sex">${userVar.sex}</label>
+					    		</div>
+							</div>
+
+			        </fieldset>  
+			        </c:forEach>  
+			        	
+	    		</form>
+    		</div>
+    	<c:url value="updateuser.jsp" var="userupdate">
+			<c:param name="id" value="${id}"/>
+			<c:param name="name" value="${name}"/>
+			<c:param name="email" value="${email}"/>
+			<c:param name="phone" value="${phone}"/>
+			<c:param name="NIC_PassportNO" value="${NIC_PassportNO}"/>
+			<c:param name="sex" value="${sex}"/>
+			<c:param name="pass" value="${password}"/>
+		</c:url>
+		<a href="${userupdate}"><button value="Ubtn" id="updateBtn" type="button" class="Btn2" onclick="UpdateProfilepage()">Update Profile</button></a>
+
+	<c:url value="deleteuser.jsp" var="userdelete">
+		<c:param name="id" value="${id}"/>
+		<c:param name="name" value="${name}"/>
+		<c:param name="email" value="${user.email}"/>
+		<c:param name="phone" value="${phone}"/>
+		<c:param name="NIC_PassportNO" value="${NIC_PassportNO}"/>
+		<c:param name="sex" value="${sex}"/>
+		<c:param name="pass" value="${password}"/>
+	</c:url>
+    			<a href="${userdelete}"><button value="Dbtn" id="updateBtn" type="button" class="Btn2">Delete Profile</button></a>
+				<form action="logout" method="post"><button value="Logout" id="logoutBtn" type="submit" class="Btn1">Logout</button></form>
+    	</section>
+    	<section>
+			<div id="formStyle2">
+				
+					
+		              <c:url value="advertistments" var="advertistments">
+						<c:param name="id" value="${id}"/>
+						<c:param name="name" value="${name}"/>
+					</c:url>
+						<form method="post" action="${advertistments}"><fieldset><button value="I am an Advertiser" id="myadsBtn" type="submit" class="Btn5">I am an Advertiser</button></fieldset> </form>
+						
+						
+				
+					</fieldset>
+				
+			</div>
+	<% } else {
+		response.sendRedirect("login.jsp?msg=loginFirst"); 
+	} %>
+    	</section>
+    </div>
+</body>
+</html>

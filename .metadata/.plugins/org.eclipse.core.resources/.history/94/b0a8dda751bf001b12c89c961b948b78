@@ -1,0 +1,46 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="styles/Default.css">
+<link rel="stylesheet" type="text/css" href="styles/userRegister.css">
+<style>
+<%@include file="styles/Default.css"%>
+<%@include file="styles/userRegister.css"%>
+
+</style>
+<title>Delete a Advertiser</title>
+</head>
+<body>
+<% 
+String vid =  request.getParameter("vid");
+String uid = request.getParameter("uid");
+%>
+
+<br><br>
+    	<center><h1 class="Ttxtstyle">Delete Advertiser</h1></center>
+<div class="RegisterBody">
+<section style="width:100%">
+	<div id="formStyle1">
+		<form action="deleteAd" target="_self" method="POST">
+		<fieldset>
+		<br>
+			<br>
+			<label>Video ID :</label>
+			<input type="text" name="vid" value="<%=vid %>" readonly><br><label> Under the User ID :</label><input type="text" name="uid" value="<%=uid %>" readonly>
+			
+			
+			<br><br>Do You Want To Delete This Advertistment ?<br>
+			<button name="yes" class="Btn1" type="submit" id="btn2" name="btn2"  value="Yes">Yes</button>
+			
+			
+	</fieldset>
+		</form>
+		<input name="no" class="Btn1" type="submit" id="btn2" name="btn2" onCLick="history.back()"  value="no">
+        </div>
+		</section>
+		 </div>
+</body>
+</html>

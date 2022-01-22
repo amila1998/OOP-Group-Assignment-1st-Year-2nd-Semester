@@ -1,0 +1,59 @@
+package OMTpkg.videos;
+import OMTpkg.user.*;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+//Database operations for the table content creator in the database 
+public class videoDBUtil {
+	private static Connection con = null;
+	private static Statement stmt = null;
+	private static ResultSet rs = null;
+	//Linking to a database(URL/Username/Password)
+	
+	public static List<video> getMyvideos1(String uid) {
+		ArrayList<video> video = new ArrayList<>(); 
+		
+		try {
+			
+						
+			con = DBConnecter.getConnection();
+			stmt = con.createStatement();
+			String sql = "select * from movieandtvseriassys.video where UID ='"+uid+"'";
+			rs = stmt.executeQuery(sql);
+			
+			while (rs.next()) { //to get all details from each user
+				int videoID = rs.getInt(1);
+				String title = rs.getString(2);
+				String description = rs.getString(3);
+				String ageRestriction = rs.getString(4);
+				String UID = rs.getString(5);
+				
+				
+				video pvideo = new video(videoID,title,description,ageRestriction);
+				user.add(puser);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return user;
+	}
+
+	public static boolean getMyvideos(String uid) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	
+
+}

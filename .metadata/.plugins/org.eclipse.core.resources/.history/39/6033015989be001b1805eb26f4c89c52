@@ -1,0 +1,64 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+     <%@page import="java.util.ArrayList"%>
+<html>
+<head>
+<title>User Management Application</title>
+
+
+</head>
+<body>
+
+	
+	<br><br><br>
+
+	
+		<div class="container">
+			<center><h2>List of All Content</h2></center>
+			<hr>
+			
+
+				<a href="<%=request.getContextPath()%>/new" class="btn"><button type="submit" >Add New Content</button></a>
+			
+			<br>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>videoID</th>
+						<th>title</th>
+						<th>Description</th>
+						<th>Age Restriction</th>
+						<th>category</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${myvideos}" var="video">  
+                 <tr>     
+                   <td align="left">${video.videoID}</td>                     
+                     <td align="left">${video.title}</td> 
+                     <td align="left">${video.description}</td> 
+                     <td align="left">${video.ageRestriction}</td>
+                     <td align="left">${video.category}</td>
+                     
+                     <td><c:url value="editvideoDetails.jsp" var="editvideoDetails">
+						<c:param name="videoID" value="${videoID}"/>
+						<c:param name="title" value="${title}"/>
+						<c:param name="description" value="${description}"/>
+						<c:param name="ageRestriction" value="${ageRestriction}"/>
+						<c:param name="category" value="${category}"/>
+			
+					</c:url><a href="${editvideoDetails}"><button>Edit</button></a>
+								&nbsp;&nbsp;&nbsp;&nbsp; 
+								<a href="delete?id=${video.videoID}"><button >Delete</button></a>
+								&nbsp;&nbsp;&nbsp;&nbsp;                      
+                     </td>  
+                  </tr>  
+             </c:forEach> 
+				</tbody>
+
+			</table>
+		</div>
+	
+</body>
+</html>

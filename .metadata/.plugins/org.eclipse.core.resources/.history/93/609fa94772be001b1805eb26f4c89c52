@@ -1,0 +1,177 @@
+package OMTpkg.videos;
+import OMTpkg.user.*;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+//Database operations for the table content creator in the database 
+public class videoDBUtil {
+	private static Connection con = null;
+	private static Statement stmt = null;
+	private static ResultSet rs = null;
+	//Linking to a database(URL/Username/Password)
+	
+
+	private static final String INSERT_VIDEO_SQL = "INSERT INTO video" + "  (title, description, age, UID) VALUES "
+			+ " (?, ?, ?, ?);";
+
+	private static final String SELECT_VIDEO_BY_ID = "select videoID,title,description,age,UID from video where  videoID=?";
+	private static final String SELECT_ALL_VIDEO = "select * from video where UID=?";
+	private static final String DELETE_VIDEO_SQL = "delete from video where videoID = ?;";
+	private static final String UPDATE_VIDEO_SQL = "update video set title = ?,description= ?, age =? where videoID = ?;";
+	//Create Insert, Select, Delete and Update query
+
+	public videoDBUtil() {
+	}
+	
+	
+	//Connect to the mysql database
+	protected Connection getConnection() {
+		Connection connection = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			con = DBConnecter.getConnection();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return connection;
+	}
+	
+	
+	//Create or insert Content Creator method
+	public void insertvideo(video video) throws SQLException {
+		System.out.println(INSERT_VIDEO_SQL);
+		// try-with-resource statement will auto close the connection.
+		try (Connection connection = getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(INSERT_VIDEO_SQL)) {
+			preparedStatement.setString(1, video.getTitle());
+			preparedStatement.setString(2, video.getDescription());
+			preparedStatement.setString(3, video.getAge());
+			preparedStatement.setString(4, video.getUserid());
+
+			System.out.println(preparedStatement);
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			printSQLException(e);
+		}
+	}
+	
+	
+	
+	//Select content method
+	public video selectvideo(int id) {
+		video video = null;
+		// Step 1: Establishing a Connection
+		try (Connection connection = getConnection();
+				// Step 2:Create a statement using connection object
+				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_VIDEO_BY_ID);) {
+			preparedStatement.setInt(1, id);
+			System.out.println(preparedStatement);
+			// Step 3: Execute the query or update query
+			ResultSet rs = preparedStatement.executeQuery();
+
+			// Step 4: Process the ResultSet object.
+			while (rs.next()) {
+				String title = rs.getString("title");
+				String description = rs.getString("description");
+				String age = rs.getString("age");
+				String userid = rs.getString("userid");
+
+				video = new video(id, title, description, age, userid);
+			}
+		} catch (SQLException e) {
+			printSQLException(e);
+		}
+		return video;
+	}
+	
+	
+	
+	//Select content by Content ID method
+	public List<video> selectAllvideo() {
+
+		// using try-with-resources to avoid closing resources (boiler plate code)
+		List<video> video = new ArrayList<>();
+		// Step 1: Establishing a Connection
+		try (Connection connection = getConnection();
+
+				// Step 2:Create a statement using connection object
+			PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_VIDEO);) {
+			System.out.println(preparedStatement);
+			// Step 3: Execute the query or update query
+			ResultSet rs = preparedStatement.executeQuery();
+
+			// Step 4: Process the ResultSet object.
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String title = rs.getString("title");
+				String description = rs.getString("description");
+				String age = rs.getString("age");
+				String UID = rs.getString("UID");
+
+				video.add(new video(id, title, description, age,UID));
+			}
+		} catch (SQLException e) {
+			printSQLException(e);
+		}
+		return video;
+	}
+	
+	
+	
+	//Delete Content method
+	public boolean deletevideo(int id) throws SQLException {
+		boolean rowDeleted;
+		try (Connection connection = getConnection();
+				PreparedStatement statement = connection.prepareStatement(DELETE_VIDEO_SQL);) {
+			statement.setInt(1, id);
+			rowDeleted = statement.executeUpdate() > 0;
+		}
+		return rowDeleted;
+	}
+	
+	
+	//Update Content method
+	public boolean updatevideo(video video) throws SQLException {
+		boolean rowUpdated;
+		try (Connection connection = getConnection();
+				PreparedStatement statement = connection.prepareStatement(UPDATE_VIDEO_SQL);) {
+			statement.setString(1, video.getTitle());
+			statement.setString(2, video.getDescription());
+			statement.setString(3, video.getAge());
+			statement.setString(4, video.getUserid());
+
+			statement.setInt(5, video.getId());
+			
+
+			rowUpdated = statement.executeUpdate() > 0;
+		}
+		return rowUpdated;
+	}
+
+	private void printSQLException(SQLException ex) {
+		for (Throwable e : ex) {
+			if (e instanceof SQLException) {
+				e.printStackTrace(System.err);
+				System.err.println("SQLState: " + ((SQLException) e).getSQLState());
+				System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
+				System.err.println("Message: " + e.getMessage());
+				Throwable t = ex.getCause();
+				while (t != null) {
+					System.out.println("Cause: " + t);
+					t = t.getCause();
+				}
+			}
+		}
+	}
+
+}

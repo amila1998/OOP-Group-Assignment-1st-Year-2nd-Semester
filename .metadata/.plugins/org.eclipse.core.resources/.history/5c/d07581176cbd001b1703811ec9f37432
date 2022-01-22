@@ -1,0 +1,35 @@
+/**
+ * 
+ */
+package OMTpkg.user;
+
+/**
+ *
+ *
+ */
+public class advertiser extends user {
+	public int advertiserID;
+	public String companyName;
+	public String companyAddress;
+	
+	public advertiser(int advertiserID,int id, String name, String email, String phone, String nIC_PassportNO, String sex,
+			String password, String membershiptype) {
+		super(id, name, email, phone, nIC_PassportNO, sex, password, membershiptype);
+		this.advertiserID=advertiserID;
+		
+	}
+	/**
+	 * @return the advertiserID
+	 */
+	public int getAdvertiserID() {
+		return advertiserID;
+	}
+	/**
+	 * @param advertiserID the advertiserID to set
+	 */
+	public void setAdvertiserID(int advertiserID) {
+		this.advertiserID = advertiserID;
+	}
+	
+
+}

@@ -1,0 +1,44 @@
+/**
+ * 
+ */
+package OMTpkg.user;
+
+import java.util.List;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+/**
+ * @author amila
+ *
+ */
+public class advertiserDBUtil {
+	
+	private static boolean conform;
+	private static Connection con = null;
+	private static Statement stmt = null;
+	private static ResultSet rs = null;
+	
+	public static boolean advertiserConformation(String uUID) {// method for validate user login from the database
+		try {
+			//validation
+			con = DBConnecter.getConnection(); //connect to the database
+			stmt = con.createStatement();
+			String sql = "select * from advertiser where UID='"+uUID+"'"; //SQL query
+			rs = stmt.executeQuery(sql);
+			
+			if (rs.next()) { //If result set (rs) is true then login Successfully is true
+				conform = true;
+			} else {//If result set (rs) is false then login Successfully is false
+				conform = false;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return conform;
+	}
+
+}

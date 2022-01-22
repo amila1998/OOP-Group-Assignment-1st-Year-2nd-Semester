@@ -1,0 +1,5 @@
+package OMTpkg.user;
+
+abstract public watcher extends user {
+
+}

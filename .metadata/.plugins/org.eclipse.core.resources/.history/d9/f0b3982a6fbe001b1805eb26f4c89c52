@@ -1,0 +1,75 @@
+/**
+ * 
+ */
+package OMTpkg.videos;
+
+/**
+ * @author amila
+ *
+ */
+public class video {
+	protected int id;
+	protected String title;
+	protected String description;
+	protected String age;
+		
+
+	
+	//Create without id parameterize constructor	
+	public video(String title, String description, String age) {
+		super();
+		this.title = title;
+		this.description = description;
+		this.age = age;
+		
+	}
+	
+
+	//Create  parameterize constructor
+	public video(int id, String title, String description, String age) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.age = age;
+		
+
+	}	
+	
+
+	//Getters and Setters method
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getAge() {
+		return age;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
+	}
+
+
+
+}

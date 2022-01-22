@@ -1,0 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>I am an Advertiser</title>
+</head>
+<body>
+<section>
+<form action="" method="post">
+<button>My Advertiser Account</button>
+</form>
+<form action="" method="post">
+<button>My Advertistments</button>
+</form>
+</section>
+
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+
+	
+	<title> Payment Form </title>
+	<style>
+	<%@include file="styles/payment.css"%>
+	</style>
+</head>
+<body>
+<br><br><br>
+
+
+		<div class="form2">	
+		<a href="<%=request.getContextPath()%>/list" >
+		<button type="submit" class="buttons">Users</button>
+		</a>	
+	<br>
+	
+	<c:if test="${payment != null}">
+		<form action="update" method="post">
+	</c:if>
+				
+	<c:if test="${payment == null}">
+		<form action="insert" method="post">
+	</c:if>
+
+	<center>
+	<h2 class="h2">
+		<c:if test="${payment != null}">
+            Edit Payment
+         </c:if>
+		<c:if test="${payment == null}">
+            Add New Payment
+         </c:if>
+	</h2>
+	</center>
+
+	<c:if test="${payment != null}">
+		<input type="hidden" class="input" name="id" value="<c:out value='${payment.id}' />" />
+	</c:if>
+	
+	<hr>
+	<br>
+	<center>
+	<table class="qwe" >
+		<tr>
+			<td><lable class="lable"><b>Card Name</b></lable><br>
+			<input type="text" class="input" value="<c:out value='${payment.cardname}'/>" name="cardname" required="required"></td>
+
+			<td><lable class="lable"><b>Card Number</b></lable><br>
+			<input type="text" class="input" value="<c:out value='${payment.cardnumber}' />" 
+			name="cardnumber"></td>
+		</tr>
+		<tr>
+			<td><lable class="lable"><b>Amount</b></lable><br>
+			<input type="text" class="input" value="<c:out value='${payment.amount}' />" name="amount"></td>
+
+			<td><lable class="lable"><b>CVC</b></lable><br>
+			<input type="text" class="input" value="<c:out value='${payment.cvc}' />" name="cvc"></td>
+		</tr>
+		<tr>
+			<td><lable class="lable"><b>Year(expiry)</b></lable>
+
+				<br>
+			<input type="text" class="input" value="<c:out value='${payment.year}' />" name="year"></td>
+
+			<td><lable class="lable"><b>Month(expiry)</b></lable><br>
+			<input type="text" class="input" value="<c:out value='${payment.month}' />" name="month"></td>
+		</tr>
+	</table>
+	</center>
+	<br>
+	<hr>
+	<br>
+	<button type="submit" class="buttons">Submit
+	</button>
+	</form>
+	</div>
+<br>
+<br>
+<br>
+</body>
+</html>

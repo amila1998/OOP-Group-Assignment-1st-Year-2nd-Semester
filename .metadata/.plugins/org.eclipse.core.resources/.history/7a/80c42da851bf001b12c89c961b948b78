@@ -1,0 +1,79 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="styles/Default.css">
+<style>
+<%@include file="styles/Default.css"%>
+
+
+</style>
+<title>update user details</title>
+</head>
+<body>
+
+<%
+		String id = request.getParameter("id");
+		String name = request.getParameter("name");
+		String email = request.getParameter("email");
+		String phone = request.getParameter("phone");
+		String sex = request.getParameter("sex");
+		String NIC_PassportNO = request.getParameter("NIC_PassportNO");
+		String password = request.getParameter("pass");
+	%>
+
+<br><br>
+    	<center><h1 class="Ttxtstyle">Update User Details</h1></center>
+<div class="RegisterBody">
+<section style="width:100%">
+	<div id="formStyle1">
+		<form action="updateUser" target="_self" method="POST" onsubmit="return checkPassword()">
+		<fieldset>
+			<label for="name">User ID:</label>
+  			<input type="text" id="id" name="id" value="<%= id %>" readonly>
+  			
+			<label for="name">User Name:</label>
+  			<input type="text" id="name" name="name" value="<%= name %>" required>
+			  				
+			<label for="MobileNumber">Contact Number :</label>
+			<input type="text" id="mobile" name="mobile"  pattern="[0-9]{10}" value="<%= phone %>" required>
+			
+			<label for="EmailAddress">Email Address :</label>
+			<input type="email" id="emailAdd" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9]+\.[a-z]{2,3}" value="<%= email %>" readonly>
+			
+			<label for="nic_passport">NIC or Passport No :</label>
+			<input type="text" id="nic_passport" name="nic_passport"  value="<%= NIC_PassportNO %>" required>
+			
+			<label for="gender">Gender  :</label>		
+			<input type="text" id="gender" name="gender"  value="<%= sex %>" readonly>
+			
+			<label for="Password">Password :</label>
+			<input type="password" id="pwd" name="pwd" value="<%= password %>"  required >
+			<input type="checkbox" onclick="visiblepass()">:  Show Password
+
+				<script>
+				function visiblepass() {
+				  var x = document.getElementById("pwd");
+				  if (x.type === "password") {
+				    x.type = "text";
+				  } else {
+				    x.type = "password";
+				  }
+				}
+				</script>
+										 
+			<br><br>
+			
+			<input name="update" class="Btn1" type="submit" id="btn2" name="btn2"  value="Update">
+			
+	</fieldset>
+		</form>
+        </div>
+		</section>
+</div>
+
+</body>
+</html>

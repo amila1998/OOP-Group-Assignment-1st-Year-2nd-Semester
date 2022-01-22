@@ -1,0 +1,44 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+     <%@page import="java.util.ArrayList"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="styles/Default.css">
+<title>I am an Advertiser</title>
+</head>
+<body>
+<section>
+<form action="" method="post">
+<c:forEach var="advertiserVar" items="${advertiserDetails}">
+						<c:set var="id" value="${advertiserVar.id}"/>
+						<c:set var="name" value="${advertiserVar.name}"/>
+						<c:set var="email" value="${advertiserVar.email}"/>
+						<c:set var="phone" value="${advertiserVar.phone}"/>
+						<c:set var="NIC_PassportNO" value="${advertiserVar.NIC_PassportNO}"/>
+						<c:set var="sex" value="${advertiserVar.sex}"/>
+						<c:set var="password" value="${advertiserVar.password}"/>
+						<c:set var="membershiptype" value="${advertiserVar.membershiptype}"/>
+						<c:set var="advertiserID" value="${advertiserVar.advertiserID}"/>
+						<c:set var="companyName" value="${advertiserVar.companyName}"/>
+						<c:set var="companyAddress" value="${advertiserVar.companyAddress}"/>
+				
+
+<input type=text for="uid" id="Uid" value="${userVar.advertiserID}">
+</c:forEach>
+
+			
+						
+<button type="submit" class="Btn1">My Advertiser Account</button>
+</form>
+<form action="" method="post">
+
+<button type="submit" class="Btn1">My Advertistments</button>
+</form>
+</section>
+
+
+</body>
+</html>

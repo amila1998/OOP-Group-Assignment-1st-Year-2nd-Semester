@@ -1,0 +1,90 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="styles/Default.css">
+<link rel="stylesheet" type="text/css" href="styles/resetpassword.css">
+<title>Reset Password</title>
+</head>
+<body>
+<center><h1 class="Ttxtstyle">Reset Password</h1>
+<section style="width=100%;" class="logingbody">
+	
+	<div id="formStyle3">
+		
+		<form action="resetpassword" method="POST" >
+			<fieldset>
+			<div class="col-50">
+				
+					<label for="Password">New Password :</label>
+			<input type="password" id="pwd" name="pwd" placeholder="enter your new password here"  required >
+			<input type="checkbox" onclick="visiblepass()">:  Show Password
+
+				<script>
+				function visiblepass() {
+				  var x = document.getElementById("pwd");
+				  if (x.type === "password") {
+				    x.type = "text";
+				  } else {
+				    x.type = "password";
+				  }
+				}
+				</script>
+			 <br><br>
+			<label for="rePassword">Re-enter Password :</label>
+			<input type="password" id="rpwd" name="rpwd" placeholder="re-enter your password here" required>
+			<input type="checkbox" onclick="visiblepassw()">:  Show Password
+
+				<script>
+				function visiblepassw() {
+				  var x = document.getElementById("rpwd");
+				  if (x.type === "password") {
+				    x.type = "text";
+				  } else {
+				    x.type = "password";
+				  }
+				}
+				</script>
+			
+			
+			 <br><br>
+			<input type="checkbox" id="policy" name="policy" required onclick ="enableButton2()">:  I am not a Robot
+			<br><br>
+			<input name="register" class="Btn1" type="submit" id="btn2" name="btn2"  value="submit" disable><br>
+			
+			
+			<script>function enableButton2(){
+
+						if(document.getElementById("policy").checked){
+							if(document.getElementById("pwd").value != document.getElementById("rpwd").value ){
+								
+								alert("password are mismatched!!");
+								document.getElementById("policy").checked = false;
+							}
+							else{					
+							}
+				
+							document.getElementById("btn2").disabled= false;//this means submit button is enabled
+						}
+						else{
+							document.getElementById("btn2").disabled= true;
+						
+						}
+					} 
+		</script>
+		</div>
+		</fieldset>
+		</form>
+		
+		</center>
+    </div>
+    
+</section>
+
+
+
+
+</body>
+</html>

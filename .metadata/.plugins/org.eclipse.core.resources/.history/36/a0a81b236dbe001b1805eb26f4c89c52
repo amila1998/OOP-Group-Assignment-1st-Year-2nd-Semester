@@ -1,0 +1,142 @@
+package OMTpkg.videos;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class videoServlet
+ */
+@WebServlet("/videoServlet")
+public class videoServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	private videoDBUtil videoDBUtil;
+	
+	
+	public void init() {
+		videoDBUtil = new videoDBUtil();
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String action = request.getServletPath();
+
+		
+		
+		//Handle Select, insert, Delete, edit, Update method in switch cases
+		try {
+			switch (action) {
+			case "/new":
+				showNewForm(request, response);
+				break;
+			case "/insert":
+				insertvideo(request, response);
+				break;
+			case "/delete":
+				deletevideo(request, response);
+				break;
+			case "/edit":
+				showEditForm(request, response);
+				break;
+			case "/update":
+				updatevideo(request, response);
+				break;
+			default:
+				listvideo(request, response);
+				break;
+			}
+		} catch (SQLException ex) {
+			throw new ServletException(ex);
+		}
+	}
+
+	
+	
+	//All the details related to the list method are displayed in the user-list.jsp page
+	private void listvideo(HttpServletRequest request, HttpServletResponse response)throws SQLException, IOException, ServletException {
+		
+		List<video> listvideo = videoDBUtil.selectAllvideo();
+		request.setAttribute("listvideo", listvideo);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("myvideos.jsp");
+		dispatcher.forward(request, response);
+	}
+
+	
+	
+	//showNewForm calls the RequestDispatcher object and user-form.jsp appears
+	private void showNewForm(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("insertvideo.jsp");
+		dispatcher.forward(request, response);
+	}
+
+	
+	
+	//showEditForm calls the RequestDispatcher object and user-form.jsp appears
+	private void showEditForm(HttpServletRequest request, HttpServletResponse response)	throws SQLException, ServletException, IOException {
+		
+		int id = Integer.parseInt(request.getParameter("id"));
+		video existingUser = videoDBUtil.selectvideo(id);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("inservideo.jsp");
+		request.setAttribute("video", existingUser);
+		dispatcher.forward(request, response);
+
+	}
+
+	
+	//InsertContent method extracts video details
+	private void insertvideo(HttpServletRequest request, HttpServletResponse response)throws SQLException, IOException {
+		String id = request.getParameter("uid");
+		
+		String title = request.getParameter("title");
+		String description = request.getParameter("description");
+		String age = request.getParameter("age");
+		String userid = request.getParameter("id");
+		
+		video newvideo = new video(title, description, age, userid);
+		videoDBUtil.insertvideo(newvideo);
+		response.sendRedirect("list");
+	}
+
+	
+	
+	//UpdateContent method extracts video details
+	private void updatevideo(HttpServletRequest request, HttpServletResponse response)throws SQLException, IOException {
+		
+		int id = Integer.parseInt(request.getParameter("id"));
+		String title = request.getParameter("title");
+		String description = request.getParameter("description");
+		String age = request.getParameter("age");
+		String UID = request.getParameter("uid");
+
+
+		video book = new video(id, title, description, age, UID);
+		videoDBUtil.updatevideo(book);
+		response.sendRedirect("list");
+	}
+
+	
+	//Delete id related information from the DeleteContent method
+	private void deletevideo(HttpServletRequest request, HttpServletResponse response) 
+			throws SQLException, IOException {
+		int id = Integer.parseInt(request.getParameter("id"));
+		videoDBUtil.deletevideo(id);
+		response.sendRedirect("list");
+
+	}
+  
+
+	
+}

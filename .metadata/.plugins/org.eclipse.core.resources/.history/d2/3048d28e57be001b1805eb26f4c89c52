@@ -1,0 +1,100 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+     <%@page import="java.util.ArrayList"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="styles/Default.css">
+<link rel="stylesheet" type="text/css" href="styles/advertiser.css">
+<title>Content Creator Profile</title>
+</head>
+<body>
+<div class="UPbody">
+		<section style="width:70%">
+			<div id="formStyle4">
+<form action="#" method="post" >
+
+			<c:forEach var="contentCreaterVar" items="${contentCreaterDetails}">
+						<c:set var="id" value="${contentCreatorVar.id}"/>
+						
+						<c:set var="companyName" value="${contentCreatorVar.companyName}"/>
+						<c:set var="companyLocation" value="${contentCreatorVar.companyLocation}"/>
+						
+
+<center>
+		
+			<fieldset>
+		         <legend>Content Creator Profile Details</legend><br>
+		                    <div class="row">
+								<div style="width:20%"> 
+									<label for="uid" class="m">User ID</label>
+								</div>
+								<div style="width:2%">
+									<label>:</label>
+								</div>
+								<div style="width:78%">
+									<label for="uid" id="Uid">${contentCreatorVar.id}</label>
+								</div>
+							</div>
+
+
+							<div class="row">
+								<div style="width:20%">
+									<label for="companyName" class="m">Company Name</label>
+								</div>
+								<div style="width:2%">
+									<label>:</label>
+								</div>
+								<div style="width:78%">
+									<label for="companyName" id="companyName">${contentCreatorVar.companyName}</label>
+								</div>
+							</div>
+
+							<div class="row">
+								<div style="width:20%">
+				        			<label for="companyAddress" class="m">Company Address</label>
+				        		</div>
+				        		<div style="width:2%">
+									<label>:</label>
+								</div>
+				        		<div style="width:78%">
+				        			<label for="companyLocation" id="companyLocation">${contentCreatorVar.companyLocation}</label>
+				        		</div>
+							</div>					
+							</fieldset>  
+			        </c:forEach>  
+			        	<button type="submit" class="Btn1">Update Content Creator Details</button>
+	    		</form>
+    		</div>
+		
+
+
+
+</section>
+
+<section style="width:30%">
+<div id="formStyle2">
+<form action="" method="post">
+
+
+<center>
+<button type="submit" class="Btn5">My Videos</button>
+</center>
+
+</form>
+
+<form action="" method="post">
+<center>
+<button type="submit" class="Btn5">Add a Video</button>
+</center>
+</div>
+
+</form>
+</div>
+</section>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+/**
+ * 
+ */
+package OMTpkg.advertistments;
+
+import java.util.List;
+
+/**
+ * @author amila
+ *
+ */
+public class advertistmentDBUtil {
+
+	public static List<advertistment> getMyads(String uid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,66 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="styles/Default.css">
+<link rel="stylesheet" type="text/css" href="styles/userRegister.css">
+<style>
+<%@include file="../styles/Default.css"%>
+<%@include file="../styles/userRegister.css"%>
+
+</style>
+<title>Edit Advertistment Details</title>
+</head>
+<body>
+
+<br><br>
+ 
+<center><h1 class="Ttxtstyle">Edit Advertistment Details</h1></center>
+<div class="RegisterBody">
+<section style="width:100%">
+	<div id="formStyle1">
+	
+		<form action="updateAdDetails" target="_self" method="POST">
+		<c:forEach items="${myads}" var="ads">
+		<fieldset>
+		
+			<label for="name">User ID:</label>
+  			<input type="text" id="id" name="uid" value="${ads.UID}" readonly>
+  			
+  			<label for="name">Advertistment ID:</label>
+  			<input type="text" id="ad_id" name="ad_id" value="${ads.ad_id}" readonly>
+  			
+			<label for="name">Advertistment Name:</label>
+  			<input type="text" id="ad_name" name="ad_name" value="${ads.ad_name}" required>
+			  				
+			<label for="MobileNumber">Category :</label>
+			<input type="text" id="adCategory" name="adCategory" value="${ads.adCategory}" required>
+			
+			<label for="ageRestrictio">Period :</label>
+			<input type="text" id="period" name="period" value="${ads.period}" required>
+			
+					
+			<label for="file">Insert File :</label>
+			<input type="file" id="file" name="file" value="${ads.filename}"  readonly>
+			
+			
+			<label for="file">Thumbnail :</label>
+			<input type="file" id="thumbnail" value="${ads.thumbnail}" name="thumbnail">
+			
+			
+										 
+			<br><br>
+			
+			<input name="UpdateAds" class="Btn1" type="submit" id="btn2" name="btn2"  value="Update Advertistment Details">
+			
+	</fieldset>
+	</c:forEach>
+		</form>
+		
+        </div>
+		</section>
+</div>
+</body>
+</html>

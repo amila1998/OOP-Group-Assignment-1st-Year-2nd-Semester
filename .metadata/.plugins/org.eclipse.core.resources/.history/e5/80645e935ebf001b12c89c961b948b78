@@ -1,0 +1,70 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="styles/Default.css">
+<style>
+<%@include file="styles/Default.css"%>
+
+
+</style>
+<title>Advertiser Registration</title>
+</head>
+<body>
+<%
+		String id = request.getParameter("id");
+		String name = request.getParameter("name");
+		String email = request.getParameter("email");
+		
+%>
+
+<br><br>
+    	<center><h1 class="Ttxtstyle">Become an Advertiser</h1></center>
+
+<section style="width:100%">
+	<div id="formStyle1">
+		<form action="contentCreaterRegistration" target="_self" method="POST">
+		<fieldset>
+		
+		
+		
+			<label for="name">User ID:</label>
+  			<input type="text" id="uid" name="uid" value="<%= id %>" readonly>
+  			
+			<label for="name">User Name:</label>
+  			<input type="text" id="name" name="name" value="<%= name %>" readonly>
+			  				
+						
+			<label for="companyName">Company Name :</label>
+			<input type="text" id="companyName" name="companyName" required>
+			
+			<label for="companyAddress">Company Address :</label>
+			<input type="text" id="companyAddress" name="companyAddress"  required>
+			
+													 
+			<br><br>
+			
+			<input name="AdRegister" class="Btn1" type="submit" id="btn2" name="btn2"  value="Register">
+			
+	</fieldset>
+		</form>
+        </div>
+		</section>
+
+
+</body>
+<footer style="display: block;
+  width:100%;
+  height:auto;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  position:fixed;">
+<div class="FtopPadding">
+				<p class="copyRSing" >Copyright &#169; 2021 - Online Movie & Tv Series System - All Right Reserved</p>
+			</div>	
+</footer>
+</html>

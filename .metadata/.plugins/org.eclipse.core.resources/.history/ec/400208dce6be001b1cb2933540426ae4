@@ -1,0 +1,24 @@
+/**
+ * 
+ */
+package OMTpkg.advertistments;
+
+import java.util.List;
+
+/**
+ * @author amila
+ *
+ */
+public class advertistmentDBUtil {
+
+	public static List<advertistment> getMyads(String uid) {
+		
+	}
+
+	public static boolean insertadvertistment(String uid, String ad_name, String category, String period,
+			String adCategory) {
+		
+		return false;
+	}
+
+}

@@ -1,0 +1,25 @@
+/**
+ * 
+ */
+package OMTpkg.user;
+
+import java.util.List;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+/**
+ * @author amila
+ *
+ */
+public class advertiserDBUtil {
+	
+	private static boolean conform;
+	private static Connection con = null;
+	private static Statement stmt = null;
+	private static ResultSet rs = null;
+	
+	
+
+}

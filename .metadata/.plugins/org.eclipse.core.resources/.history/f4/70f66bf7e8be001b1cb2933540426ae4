@@ -1,0 +1,76 @@
+/**
+ * 
+ */
+package OMTpkg.advertistments;
+import OMTpkg.user.*;
+import OMTpkg.videos.video;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.List;
+
+/**
+ * @author amila
+ *
+ */
+public class advertistmentDBUtil {
+	private static Connection con = null;
+	private static Statement stmt = null;
+	private static ResultSet rs = null;
+
+	public static List<advertistment> getMyads(String uid) {
+		try {
+			
+			
+			con = DBConnecter.getConnection();
+			stmt = con.createStatement();
+			String sql = "select * from movieandtvseriassys.advertisement where UID ='"+uid+"'";
+			rs = stmt.executeQuery(sql);
+			
+			while (rs.next()) { //to get all details from each user
+				int videoID = rs.getInt(1);
+				String title = rs.getString(2);
+				String description = rs.getString(3);
+				String ageRestriction = rs.getString(4);
+				String UID = rs.getString(5);
+				String category = rs.getString(6);
+				
+				
+				video pvideo = new video(videoID,title,description,ageRestriction,category,UID);
+				video.add(pvideo);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return video;
+	}
+
+	public static boolean insertadvertistment(String uid, String ad_name,String period,String adCategory) {
+		
+boolean Success = false;
+    	
+    	try {
+    		con = DBConnecter.getConnection();
+    		stmt = con.createStatement();
+    	    String sql = "insert into advertisement values (0,'"+uid+"','"+ad_name+"','"+adCategory+"','"+period+"')";
+    		int rs = stmt.executeUpdate(sql);
+    		
+    		if(rs > 0) {
+    			Success = true;
+    		} else {
+    			Success = false;
+    		}
+    		
+    	}
+    	catch (Exception e) {
+    		e.printStackTrace();
+    	}
+ 	
+    	return Success;
+    
+	}
+
+}

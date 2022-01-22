@@ -1,0 +1,12 @@
+
+package OMTpkg.user;
+
+
+public class advertiser extends user {
+	public String advertiserID;
+	public advertiser(int id, String name, String email, String phone, String nIC_PassportNO, String sex,
+			String password) {
+		super(id, name, email, phone, nIC_PassportNO, sex, password);
+		// TODO Auto-generated constructor stub
+	}
+}

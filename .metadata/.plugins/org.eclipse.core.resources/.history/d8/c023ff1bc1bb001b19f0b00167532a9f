@@ -1,0 +1,31 @@
+@charset "ISO-8859-1";
+
+.Plogo1 img {
+  height: 100px;
+  display:block;
+  margin:auto;
+}
+
+.logingbody section{
+	padding:20px 50px 20px 50px;
+}
+.error p{
+	padding:10px 10px;
+	background: red;
+	color:black;
+	font-size: 50px;
+
+}
+.invalid div{
+  background-color: red;    
+  text-align: center;
+  color:white;
+  padding:10px;
+   border-radius: 25px;
+}
+.invalid2 div  {background-color: green;    
+  text-align: center;
+  color:white;
+  padding:10px;
+   border-radius: 25px;
+}

@@ -1,0 +1,52 @@
+package OMTpkg.advertistments;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+/**
+ * Servlet implementation class advertistmentUpdateServlet
+ */
+@WebServlet("/advertistmentUpdateServlet")
+public class advertistmentUpdateServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String uid = request.getParameter("uid");
+		String ad_id = request.getParameter("ad_id");
+		String ad_name = request.getParameter("ad_name");
+		String period = request.getParameter("period");
+		String adCategory = request.getParameter("adCategory");
+		
+		boolean istrue = advertistmentDBUtil.updateAdDetails(uid,ad_id ,ad_name, period , adCategory);
+		
+		
+		if(istrue==true) {
+		
+			List<advertistment> myads = advertistmentDBUtil.getMyads(uid);
+			request.setAttribute("myads", myads);
+			
+			RequestDispatcher dis = request.getRequestDispatcher("advertistments/myads.jsp");
+			dis.forward(request, response);
+		}else {
+			List<advertistment> myads = advertistmentDBUtil.getMyads(uid);
+			request.setAttribute("myads", myads);
+			
+			RequestDispatcher dis = request.getRequestDispatcher("advertistments/myads.jsp");
+			dis.forward(request, response);
+		}
+		
+		
+	}
+
+}

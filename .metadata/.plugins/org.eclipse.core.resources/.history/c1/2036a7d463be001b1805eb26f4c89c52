@@ -1,0 +1,84 @@
+package net.javaguides.usermanagement.model;
+
+
+	//Create content variable 
+	
+		/*ID
+		 * Title
+		 * Description
+		 * Age
+		 * UserID */	
+
+public class User {
+	protected int id;
+	protected String title;
+	protected String description;
+	protected String age;
+	protected String userid;	
+
+	
+	//Create without id parameterize constructor	
+	public User(String title, String description, String age, String userid) {
+		super();
+		this.title = title;
+		this.description = description;
+		this.age = age;
+		this.userid = userid;
+	}
+	
+
+	//Create  parameterize constructor
+	public User(int id, String title, String description, String age, String userid) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.age = age;
+		this.userid = userid;
+
+	}	
+	
+
+	//Getters and Setters method
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getAge() {
+		return age;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
+	}
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+	
+}

@@ -1,0 +1,63 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="styles/Default.css">
+<link rel="stylesheet" type="text/css" href="styles/userRegister.css">
+<style>
+<%@include file="styles/Default.css"%>
+<%@include file="styles/userRegister.css"%>
+
+</style>
+<title>user register</title>
+</head>
+<body>
+<%
+		String id = request.getParameter("uid");
+
+%>
+
+<br><br>
+    	<center><h1 class="Ttxtstyle">Upload a Video</h1></center>
+<div class="RegisterBody">
+<section style="width:100%">
+	<div id="formStyle1">
+		<form action="upload" target="_self" method="POST">
+		<fieldset>
+			<label for="name">User ID:</label>
+  			<input type="text" id="id" name="uid" value="<%= id %>" readonly>
+  			
+			<label for="name">Title:</label>
+  			<input type="text" id="title" name="title" required>
+			  				
+			<label for="MobileNumber">Description :</label>
+			<input type="text" id="description" name="description" required>
+			
+			<label for="ageRestrictio">Age Restriction :</label>
+			<input type="text" id="ageRestriction" name="ageRestriction" required>
+			
+			<label for="category">Category :</label>
+			<input type="text" id="category" name="category" required>
+			
+			<label for="file">Insert video :</label>
+			<input type="file" id="file" name="file" required>
+			
+			
+			<label for="file">Thumbnail :</label>
+			<input type="file" id="thumbnail" name="thumbnail">
+			
+			
+										 
+			<br><br>
+			
+			<input name="Upload" class="Btn1" type="submit" id="btn2" name="btn2"  value="Upload">
+			
+	</fieldset>
+		</form>
+        </div>
+		</section>
+</div>
+</body>
+</html>

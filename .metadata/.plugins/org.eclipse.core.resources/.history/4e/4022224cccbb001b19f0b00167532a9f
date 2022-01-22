@@ -1,0 +1,59 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Reset Password</title>
+</head>
+<body>
+<center><h1 class="Ttxtstyle">Reset Password</h1>
+<section style="width=100%;" class="logingbody">
+	
+	<div id="formStyle3">
+		
+		<form action="resetpassword" method="POST" >
+			<div class="col-50">
+				
+					<label for="Password">Password :</label>
+			<input type="password" id="pwd" name="pwd" placeholder="enter your password here"  required >
+			
+			<label for="rePassword">Re-enter Password :</label>
+			<input type="password" id="rpwd" name="rpwd" placeholder="re-enter your password here" required>
+			
+			
+			 
+			<input type="checkbox" id="policy" name="policy" required onclick ="enableButton()">:  I am not a Robot
+			<br><br>
+			<input name="register" class="Btn1" type="submit" id="btn2" name="btn2"  value="submit" disable><br>
+			
+			<script>function enableButton(){
+
+						if(document.getElementById("policy").checked){
+							if(document.getElementById("pwd").value != document.getElementById("rpwd").value ){
+								
+								alert("password are mismatched!!");
+								document.getElementById("policy").checked = false;
+							}
+							else{					
+							}
+				
+							document.getElementById("btn2").disabled= false;//this means submit button is enabled
+						}
+						else{
+							document.getElementById("btn2").disabled= true;
+						
+						}
+					} 
+		</script>
+		</form>
+		
+    </div>
+    
+</section>
+
+</center>
+
+
+</body>
+</html>

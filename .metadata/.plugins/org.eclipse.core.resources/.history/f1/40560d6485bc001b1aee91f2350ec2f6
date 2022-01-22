@@ -1,0 +1,19 @@
+/**
+ * 
+ */
+package OMTpkg.user;
+
+/**
+ * @author amila
+ *
+ */
+public class advertiser {
+
+	/**
+	 * 
+	 */
+	public advertiser() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

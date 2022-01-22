@@ -1,0 +1,22 @@
+/**
+ * 
+ */
+package OMTpkg.videos;
+
+/**
+ * @author amila
+ *
+ */
+public class video {
+	protected int videoID;
+	protected String title;
+	protected String description;
+	protected String ageRestriction;
+		
+	
+	
+	
+	
+
+
+}

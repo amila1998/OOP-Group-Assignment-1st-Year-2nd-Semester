@@ -1,0 +1,97 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="styles/Default.css">
+<link rel="stylesheet" type="text/css" href="styles/userRegister.css">
+<style>
+<%@include file="styles/Default.css"%>
+<%@include file="styles/userRegister.css"%>
+
+</style>
+
+<title>user register</title>
+</head>
+<body>
+<br><br>
+    	<center><h1 class="Ttxtstyle">Registeration Form</h1></center>
+<div class="RegisterBody">
+<section style="width:100%">
+	<div id="formStyle1">
+		<form action="register" target="_self" method="POST">
+		<fieldset>
+			<label for="name">User Name:</label>
+  			<input type="text" id="name" name="name" placeholder="enter your name here" required>
+			  				
+			<label for="MobileNumber">Contact Number :</label>
+			<input type="text" id="mobile" name="mobile"  pattern="[0-9]{10}" placeholder="enter your contact here" required>
+			
+			<label for="EmailAddress">Email Address :</label>
+			<input type="email" id="emailAdd" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9]+\.[a-z]{2,3}" placeholder="enter your email here" required>
+			
+			<label for="nic_passport">NIC or Passport No :</label>
+			<input type="text" id="nic_passport" name="nic_passport"  placeholder="enter your NIC/Passport number here" required>
+			
+			<label for="gender">Gender  :</label>		
+			<div class="row">
+				
+			<div class="col-25">
+			<input type="radio" id="male" name="gender" value="male">			
+			<label for="male">  Male  :</label>			
+			</div>
+			<div class="col-25">
+			<input type="radio" id="female" name="gender" value="female">
+			<label for="female">  Female  :</label>
+			</div>
+			<div class="col-25">
+			<input type="radio" id="other" name="gender" value="other">
+			<label for="other">  Other  :</label>
+			</div>
+			</div>
+			<br><br>
+
+			
+			<label for="Password">Password :</label>
+			<input type="password" id="pwd" name="pwd" placeholder="enter your password here"  required >
+			
+			<label for="rePassword">Re-enter Password :</label>
+			<input type="password" id="rpwd" name="rpwd" placeholder="re-enter your password here" required>
+			
+			
+			 
+			<input type="checkbox" id="policy" name="policy" required onclick ="enableButton()">:  Accept privacy policy terms 
+			<br><br>
+			<input name="register" class="Btn1" type="submit" id="btn2" name="btn2"  value="submit" disable><br>
+			
+			<script>function enableButton(){
+
+						if(document.getElementById("policy").checked){
+							if(document.getElementById("pwd").value != document.getElementById("rpwd").value ){
+								
+								alert("password are mismatched!!");
+								document.getElementById("policy").checked = false;
+							}
+							else{					
+							}
+				
+							document.getElementById("btn2").disabled= false;//this means submit button is enabled
+						}
+						else{
+							document.getElementById("btn2").disabled= true;
+						
+						}
+					} 
+		</script>
+		
+		
+	</fieldset>
+		</form>
+        </div>
+		</section>
+</div>
+
+</body>
+</html>

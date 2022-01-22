@@ -1,0 +1,113 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+     <%@page import="java.util.ArrayList"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="styles/Default.css">
+<link rel="stylesheet" type="text/css" href="styles/advertiser.css">
+<title>I am an Advertiser</title>
+</head>
+<body>
+	<div class="UPbody">
+		<section style="width:70%">
+			<div id="formStyle4">
+<form action="#" method="post" >
+<fieldset>
+			<c:forEach var="advertiserVar" items="${advertiserDetails}">
+						<c:set var="id" value="${advertiserVar.id}"/>
+						<c:set var="advertiserID" value="${advertiserVar.advertiserID}"/>
+						<c:set var="companyName" value="${advertiserVar.companyName}"/>
+						<c:set var="companyAddress" value="${advertiserVar.companyAddress}"/>
+						
+
+
+		
+			<fieldset>
+		         <legend>Advertiser Profile Details</legend><br>
+		                    <div class="row">
+								<div style="width:20%"> 
+									<label for="uid" class="m">User ID</label>
+								</div>
+								<div style="width:2%">
+									<label>:</label>
+								</div>
+								<div style="width:78%">
+									<label for="uid" id="Uid">${advertiserVar.id}</label>
+								</div>
+							</div>
+
+							<div class="row">
+								<div style="width:20%"> 
+									<label for="advertiserID" class="m">advertiserID</label>
+								</div>
+								<div style="width:2%">
+									<label>:</label>
+								</div>
+								<div style="width:78%">
+									<label for="advertiserID" id="advertiserID">${advertiserVar.advertiserID}</label>
+								</div>
+							</div>
+
+
+							<div class="row">
+								<div style="width:20%">
+									<label for="companyName" class="m">Company Name</label>
+								</div>
+								<div style="width:2%">
+									<label>:</label>
+								</div>
+								<div style="width:78%">
+									<label for="companyName" id="companyName">${advertiserVar.companyName}</label>
+								</div>
+							</div>
+
+							<div class="row">
+								<div style="width:20%">
+				        			<label for="companyAddress" class="m">Company Address</label>
+				        		</div>
+				        		<div style="width:2%">
+									<label>:</label>
+								</div>
+				        		<div style="width:78%">
+				        			<label for="companyAddress" id="companyAddress">${advertiserVar.companyAddress}</label>
+				        		</div>
+							</div>						
+
+			        </fieldset>  
+			        </c:forEach>  
+			        	<button type="submit" class="Btn1">Update Advertiser Details</button>
+	    		</form>
+    		</div>
+		
+
+
+
+</section>
+
+<section style="width:30%">
+<div id="formStyle2">
+<form action="" method="post">
+
+
+<center>
+<button type="submit" class="Btn5">My Advertistments</button>
+</center>
+
+</form>
+
+<form action="" method="post">
+<center>
+<button type="submit" class="Btn5">Add a Advertistment</button>
+</center>
+</div>
+
+</form>
+</div>
+</section>
+
+</div>
+</body>
+</html>

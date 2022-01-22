@@ -1,0 +1,50 @@
+/**
+ * 
+ */
+package OMTpkg.advertistments;
+import OMTpkg.user.*;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.List;
+
+/**
+ * @author amila
+ *
+ */
+public class advertistmentDBUtil {
+	private static Connection con = null;
+	private static Statement stmt = null;
+	private static ResultSet rs = null;
+
+	public static List<advertistment> getMyads(String uid) {
+		
+	}
+
+	public static boolean insertadvertistment(String uid, String ad_name,String period,String adCategory) {
+		
+boolean Success = false;
+    	
+    	try {
+    		con = DBConnecter.getConnection();
+    		stmt = con.createStatement();
+    	    String sql = "insert into advertisement values (0,'"+uid+"','"+ad_name+"','"+adCategory+"','"+period+"')";
+    		int rs = stmt.executeUpdate(sql);
+    		
+    		if(rs > 0) {
+    			Success = true;
+    		} else {
+    			Success = false;
+    		}
+    		
+    	}
+    	catch (Exception e) {
+    		e.printStackTrace();
+    	}
+ 	
+    	return Success;
+    
+	}
+
+}

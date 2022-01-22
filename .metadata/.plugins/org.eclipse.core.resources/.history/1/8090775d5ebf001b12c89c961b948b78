@@ -1,0 +1,78 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="styles/Default.css">
+<link rel="stylesheet" type="text/css" href="styles/userRegister.css">
+<style>
+<%@include file="../styles/Default.css"%>
+<%@include file="../styles/userRegister.css"%>
+
+</style>
+<title>user register</title>
+</head>
+<body>
+<%
+		String id = request.getParameter("uid");
+
+%>
+
+<br><br>
+ 
+	
+	 
+	 
+
+<center><h1 class="Ttxtstyle">Insert An Adevertistment</h1></center>
+<div class="RegisterBody">
+<section style="width:100%">
+	<div id="formStyle1">
+		<form action="insertAdv" target="_self" method="POST">
+		<fieldset>
+			<label for="name">User ID:</label>
+  			<input type="text" id="id" name="uid" value="<%= id %>" readonly>
+  			
+			<label for="name">Advertistment Name:</label>
+  			<input type="text" id="ad_name" name="ad_name" required>
+			  				
+			<label for="MobileNumber">Category :</label>
+			<input type="text" id="adCategory" name="adCategory" required>
+			
+			<label for="ageRestrictio">Period :</label>
+			<input type="text" id="period" name="period" required>
+			
+					
+			<label for="file">Insert File :</label>
+			<input type="file" id="file" name="file" required>
+			
+			
+			<label for="file">Thumbnail :</label>
+			<input type="file" id="thumbnail" name="thumbnail">
+			
+			
+										 
+			<br><br>
+			
+			<input name="AdInsert" class="Btn1" type="submit" id="btn2" name="btn2"  value="Insert Advertistment">
+			
+	</fieldset>
+		</form>
+        </div>
+		</section>
+</div>
+</body>
+<footer style="display: block;
+  width:100%;
+  height:auto;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  position:fixed;">
+<div class="FtopPadding">
+				<p class="copyRSing" >Copyright &#169; 2021 - Online Movie & Tv Series System - All Right Reserved</p>
+			</div>	
+</footer>
+</html>

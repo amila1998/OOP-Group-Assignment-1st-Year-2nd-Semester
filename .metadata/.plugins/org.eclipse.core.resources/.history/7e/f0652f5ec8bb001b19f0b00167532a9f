@@ -1,0 +1,49 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<center><h1 class="Ttxtstyle">Login</h1>
+<section style="width=100%;" class="logingbody">
+	
+	<div id="formStyle3">
+		
+		<form action="resetpassword" method="POST" >
+			<div class="col-50">
+				<div  class="Plogo1">
+					
+				</div>
+				
+					<% String msg = request.getParameter("msg");
+						if("invalid".equals(msg)){%>
+					<br><br><div class="invalid">Invalid Email or Password </div><br><br>
+					<%} %>
+					
+					<label for="email">Email:</label>
+					<input type="email" name="uemail" placeholder="Enter Email here " required>
+					<label for="name">Name:</label>
+					<input type="text"  name="name" placeholder="Enter your name here" required>
+		
+				</div>
+				
+				<div class="row">
+					<div class="col-50">				
+						<button value="submit" id="continue" type="submit" class="Btn3">Continue</button>
+					</div>
+				</div>
+				
+			</div>
+		</form>
+		
+    </div>
+    
+</section>
+
+</center>
+
+</body>
+</html>

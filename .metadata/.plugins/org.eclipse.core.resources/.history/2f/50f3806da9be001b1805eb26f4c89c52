@@ -1,0 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="styles/Default.css">
+<link rel="stylesheet" type="text/css" href="styles/userRegister.css">
+<title>Delete a Video</title>
+</head>
+<body>
+<% 
+String vid =  request.getParameter("vid");
+String uid = request.getParameter("uid");
+%>
+
+<br><br>
+    	<center><h1 class="Ttxtstyle">Delete User Account</h1></center>
+<div class="RegisterBody">
+<section style="width:100%">
+	<div id="formStyle1">
+		<form action="deletevideo?id=<%=vid %>&uid=<%=uid  %>" target="_self" method="POST">
+		<fieldset>
+		<br>
+			<label>Do You Want To Delete This Video ?</label><br>
+			
+			<button name="yes" class="Btn1" type="submit" id="btn2" name="btn2"  value="Yes">Yes</button>
+			
+			
+	</fieldset>
+		</form>
+		<input name="no" class="Btn1" type="submit" id="btn2" name="btn2" onCLick="history.back()"  value="no">
+        </div>
+		</section>
+		 </div>
+</body>
+</html>

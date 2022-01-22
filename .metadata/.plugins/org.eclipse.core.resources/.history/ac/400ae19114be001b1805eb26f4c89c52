@@ -1,0 +1,109 @@
+/**
+ * 
+ */
+package OMTpkg.advertiser;
+import OMTpkg.*;
+import OMTpkg.user.DBConnecter;
+import OMTpkg.user.user;
+
+import java.util.List;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+/**
+ * @author amila
+ *
+ */
+public class advertiserDBUtil {
+	
+	
+	private static Connection con = null;
+	private static Statement stmt = null;
+	private static ResultSet rs = null;
+	
+	// method for validate user login from the database
+	
+	public static boolean advertiserconformation(String id) {
+		boolean conform = false;
+		try {
+			//validation
+			con = DBConnecter.getConnection(); //connect to the database
+			stmt = con.createStatement();
+			String sql = "select * from advertiser where UID='"+id+"'"; //SQL query
+			rs = stmt.executeQuery(sql);
+			
+			if (rs.next()) { //If result set (rs) is true 
+				conform = true;
+			} else {//If result set (rs) is false then 
+				conform = false;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return conform;
+	}
+
+	public static boolean advertiserRegister(String uid, String companyName, String companyAddress) {
+		boolean isSuccess = false;
+    	
+    	try {
+    		con = DBConnecter.getConnection();
+    		stmt = con.createStatement();
+    	    String sql = "insert into advertiser values (0,'"+uid+"','"+companyName+"','"+companyAddress+"')";
+    		int rs = stmt.executeUpdate(sql);
+    		
+    		if(rs > 0) {
+    			isSuccess = true;
+    		} else {
+    			isSuccess = false;
+    		}
+    		
+    	}
+    	catch (Exception e) {
+    		e.printStackTrace();
+    	}
+ 	
+    	return isSuccess;
+    
+		
+	}
+
+	public static List<advertiser> getadvertiserDetails(String uid) {
+		int convertedID = Integer.parseInt(uid);
+		
+		ArrayList<advertiser> padvertiser = new ArrayList<>();
+		
+		try {
+			
+			con = DBConnecter.getConnection();
+			stmt = con.createStatement();
+			String sql = "select * from advertiser where UID='"+convertedID+"'";
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				int advertiserID = rs.getInt(1);
+				String UID = rs.getString(2);
+				String companyName = rs.getString(3);
+				String companyAddress = rs.getString(4);
+				
+				
+				advertiser u = new advertiser(id,name,email,phone,NIC_PassportNO,sex,password,membershiptype);
+				padvertiser.add(u);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return puser;
+	}
+
+
+	
+	
+
+}

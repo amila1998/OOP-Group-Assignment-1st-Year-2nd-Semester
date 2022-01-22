@@ -1,0 +1,49 @@
+package OMTpkg.contentCreater;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import OMTpkg.advertiser.advertiser;
+import OMTpkg.advertiser.advertiserDBUtil;
+
+/**
+ * Servlet implementation class contentCreaterRegServlet
+ */
+@WebServlet("/contentCreaterRegServlet")
+public class contentCreaterRegServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String uid = request.getParameter("uid");
+		
+		String companyName = request.getParameter("companyName");
+		String companyAddress = request.getParameter("companyLocation");
+		
+		
+		boolean isTrue;
+		
+		isTrue = contentCreaterDBUtil.contentCreaterRegister(uid,companyName,companyAddress);
+		
+		if(isTrue == true) {
+			List<contentCreater> contentCreaterDetails = contentCreaterDBUtil.getcontentCreaterDetails(uid);
+			request.setAttribute("contentCreaterDetails", contentCreaterDetails);
+			
+			RequestDispatcher dis = request.getRequestDispatcher("contentCreaterProgram.jsp");
+			dis.forward(request, response);
+		} else {
+			RequestDispatcher dis2 = request.getRequestDispatcher("#");
+			dis2.forward(request, response);
+		}
+	}
+	
+
+}
